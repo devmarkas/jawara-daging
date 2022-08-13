@@ -13,7 +13,7 @@ class PopUpBannerController extends Controller
     {
 
         $data_pop_up_banner = PopUpBanner::all();
-        return view('pop-up-banner.index', ['data_pop_up_banner' => $data_pop_up_banner]);        
+        return view('pop-up-banner.index', ['data_pop_up_banner' => $data_pop_up_banner]);
     }
 
     public function store(Request $request)
@@ -25,18 +25,17 @@ class PopUpBannerController extends Controller
             ]
         );
 
-        
+
 
         if($request->file('image_pop_up_banner'))
             {
-                $replace = str_replace("world","Peter","Hello world!");
                 $path = $request->file('image_pop_up_banner')->store('public/Image/Pop_Up_Banner_Image');
                 $nameFile = 'storage/Image/Pop_Up_Banner_Image/'.$request->file('image_pop_up_banner')->hashName();
                 $validator['image_pop_up_banner'] = $nameFile;
             }
         PopUpBanner::create($validator);
         return redirect()->route('pop-up-banner.index')->with('success','Pop Up Banner Created Successfully.');
-        
+
     }
 
     public function update(Request $request, $id)
@@ -58,13 +57,11 @@ class PopUpBannerController extends Controller
                 }
                 $pop_up_banner->update(['image_pop_up_banner'=> $nameFile]);
 
-
-                
             }
 
         $pop_up_banner->update(['link_image_pop_up_banner'=>$request->input('link_image_pop_up_banner')]);
         return redirect()->route('pop-up-banner.index')->with('success','Pop Up Banner Update Successfully.');
-                        
+
     }
 
 

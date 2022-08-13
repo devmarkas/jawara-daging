@@ -6,6 +6,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\PopUpBannerController;
 use App\Http\Controllers\PushNotificationController;
 use App\Http\Controllers\TermConditionController;
+use App\Http\Controllers\BannerFooterController;
 use App\Models\PopUpBanner;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/pop-up-banner', [PopUpBannerController::class, 'store'])->name('pop-up-banner.store');
     Route::post('/pop-up-banner{id}', [PopUpBannerController::class, 'update'])->name('pop-up-banner.update');
 
+    Route::get('/footer-banner', [BannerFooterController::class, 'index'])->name('footer-banner.index');
+    Route::post('/footer-banner', [BannerFooterController::class, 'store'])->name('footer-banner.store');
+    Route::post('/footer-banner{id}', [BannerFooterController::class, 'update'])->name('footer-banner.update');
+
     Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
     Route::post('/faq', [FaqController::class, 'store'])->name('faq.store');
     Route::get('/faq/{id}', [FaqController::class, 'edit'])->name('faq.edit');
@@ -59,11 +64,11 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 
-    
-    
 
-    
 
-    
+
+
+
+
 
 });

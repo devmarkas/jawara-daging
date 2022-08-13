@@ -7,9 +7,9 @@
           <p>Manage Your Apps</p>
           <hr>
       </span>
-        
+
       </div>
-      
+
       <div class="sidebar-brand sidebar-brand-sm">
         <a href="index.html">JD</a>
         <hr style="width: 41px; margin-top: 0px;">
@@ -70,7 +70,7 @@
           </a>
         </li>
 
-        <li class="{{ Request::is('pop-up-banner*') ? 'active' : '' }} mb-4">
+        <li class="{{ Request::is('pop-up-banner*') ? 'active' : '' }}">
           <a class="nav-link" href="/pop-up-banner">
             <span>Pop Up Banner</span>
             @if (Request::is('pop-up-banner*'))
@@ -80,7 +80,18 @@
             @endif
           </a>
         </li>
-         
+
+        <li class="{{ Request::is('footer-banner*') ? 'active' : '' }} mb-4">
+            <a class="nav-link" href="{{ route('footer-banner.index') }}">
+              <span>Banner Footer</span>
+              @if (Request::is('footer-banner*'))
+                <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif-active.svg" alt="">
+              @else
+                <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif.svg" alt="">
+              @endif
+            </a>
+          </li>
+
       </ul>
     </aside>
   </div>
