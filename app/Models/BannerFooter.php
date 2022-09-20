@@ -12,7 +12,7 @@ class BannerFooter extends Model
     protected $table = 'banner_footer';
 
     protected $fillable = [
-        'title_image_banner_footer', 'image_banner_footer'
+        'title_image_banner_footer', 'image_banner_footer', 'hide'
     ];
 
     /**

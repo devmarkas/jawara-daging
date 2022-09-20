@@ -11,6 +11,15 @@
         <div class="card-header">
           <h4>Banner Footer</h4>
           <div class="card-header-action">
+            @foreach ($data_banner_footer as $banner_footer)
+                @if ($banner_footer->hide == 'true')
+                    <span class="badge badge-warning mr-3">Disembunykan</span>
+                @else
+                    <span class="badge badge-info mr-3">Ditamplikan</span>
+
+                @endif
+            @endforeach
+
             <a data-collapse="#pop-up-banner" class="btn btn-icon btn-red" href="#"><i class="fas fa-minus"></i></a>
           </div>
         </div>
@@ -39,9 +48,18 @@
                     <img id='preview-img-banner' src="{{$banner_footer->image_banner_footer}}" class="img-fluid rounded"/>
                 </div>
 
-
-              <button type="submit" class="btn btn-icon icon-left btn-danger-action float-right mt-2 mb-4">
-                <i class="fas fa-save pr-2"></i>Simpan Perubahan</button>
+                <button type="submit" class="btn btn-icon icon-left btn-danger-action float-right mt-2 mb-4 ml-4">
+                    <i class="fas fa-save pr-2"></i>Simpan Perubahan
+                </button>
+                @if ($banner_footer->hide == 'true')
+                    <button type="submit" value="false" name="hide" class="btn btn-icon icon-left btn-info float-right mt-2 mb-4" id="show-banner-footer">
+                        <i class="far fa-eye pr-2"></i>Show
+                    </button>
+                @else
+                    <button type="submit" value="true" name="hide" class="btn btn-icon icon-left btn-warning float-right mt-2 mb-4" id="hide-banner-footer">
+                        <i class="fas fa-eye-slash pr-2"></i></i>Hide
+                    </button>
+                @endif
             </form>
             @endforeach
           </div>
