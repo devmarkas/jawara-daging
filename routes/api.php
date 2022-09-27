@@ -6,6 +6,7 @@ use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\PopUpBannerController;
 use App\Http\Controllers\API\BannerFooterController;
 use App\Http\Controllers\API\PushNotificationController;
+use App\Http\Controllers\API\PushNotificationInfoController;
 use App\Http\Controllers\API\TermConditionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/banner', [BannerController::class, 'index']);
 Route::get('/notification', [PushNotificationController::class, 'index']);
+Route::get('/notification-info', [PushNotificationInfoController::class, 'index']);
 Route::get('/term-condition', [TermConditionController::class, 'index']);
 Route::get('/contact-center', [ContactCenterController::class, 'index']);
 Route::get('/pop-up-banner', [PopUpBannerController::class, 'index']);

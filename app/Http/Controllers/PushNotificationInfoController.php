@@ -2,31 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PushNotification;
-use App\Models\PushNotificationInfo;
 use Illuminate\Http\Request;
+use App\Models\PushNotificationInfo;
+use Illuminate\Support\Facades\Validator;
 
-class PushNotificationController extends Controller
+
+
+class PushNotificationInfoController extends Controller
 {
     public function index()
     {
-
-        $data_push_notification = PushNotification::all();
         $data_push_notification_info = PushNotificationInfo::all();
-
-        return view('push-notification.index',
-        [
-            'data_push_notification' => $data_push_notification,
-            'data_push_notification_info' => $data_push_notification_info
-        ]);
+        return view('push-notification.index', ['data_push_notification_info' => $data_push_notification_info]);
     }
 
     public function store(Request $request)
     {
         $validator = $request->validate(
             [
-                'title_push_notification'         => 'required|string',
-                'deskripsi_push_notification'     => 'required|string',
+                'title_push_notification_info'          => 'required|string',
+                'deskripsi_push_notification_info'      => 'required|string',
+                'image_push_notification_info'          => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'key_product_push_notification_info'    => 'required|string',
+                'value_product_push_notification_info'  => 'required|string',
             ]
         );
 
@@ -35,18 +33,21 @@ class PushNotificationController extends Controller
         $serverKey = "AAAAFrKPJtY:APA91bF1xOpcyO6disWav77zWjLxTFLwJCp2ujFYmHnz8m2OWRTOCR-w_ZybHVo3DFl3Kzp4G02lqRR3upTK1Dh1HsTmMuepDLtDcYufA4xK3-h-n-WI94utoOVSjedHs5LWav5Mb2HX";
 
         $data = [
-            "to" => '/topics/notification',
+            "to" => '/topics/notification-info',
             "notification" => [
-                "title" => $request->title_push_notification,
-                "body" => $request->deskripsi_push_notification,
+                "title" => $request->title_push_notification_info,
+                "body" => $request->deskripsi_push_notification_info,
             ]
         ];
+
         $encodedData = json_encode($data);
 
         $headers = [
             'Authorization:key=' . $serverKey,
             'Content-Type: application/json',
         ];
+
+
 
         $ch = curl_init();
 
@@ -63,6 +64,8 @@ class PushNotificationController extends Controller
         // Execute post
         $result = curl_exec($ch);
 
+
+
         if ($result === FALSE) {
             die('Curl failed: ' . curl_error($ch));
         }
@@ -73,18 +76,18 @@ class PushNotificationController extends Controller
         // FCM response
         // dd($result);
 
-        PushNotification::create($validator);
-        return redirect()->route('push-notification.index')->with('success','Push Notification Publish Successfully.');
+        if($request->file('image_push_notification_info'))
+        {
+            $path = $request->file('image_push_notification_info')->store('public/Image/Push_Notification_Info');
+            $nameFile = 'storage/Image/Push_Notification_Info/'.$request->file('image_push_notification_info')->hashName();
+            $validator['image_push_notification_info'] = $nameFile;
+        }
+
+
+        PushNotificationInfo::create($validator);
+        return redirect()->route('push-notification.index')->with('success','Push Notification Info Publish Successfully.');
 
 
     }
 
-    public function destroy($id)
-    {
-        $data_push_notification = PushNotification::find($id);
-        $data_push_notification->delete();
-
-        return redirect()->route('push-notification.index')
-                        ->with('success','Push Notification Delete Successfully.');
-    }
 }

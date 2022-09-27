@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactCenterController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\PopUpBannerController;
 use App\Http\Controllers\PushNotificationController;
+use App\Http\Controllers\PushNotificationInfoController;
 use App\Http\Controllers\TermConditionController;
 use App\Http\Controllers\BannerFooterController;
 use App\Models\PopUpBanner;
@@ -32,6 +33,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('push-notification', PushNotificationController::class);
     Route::get('/push-notification/delete/{id}', [PushNotificationController::class, 'destroy'])->name('push-notification.delete');
+
+    //Push Notification Info
+    Route::post('push-notification-info', [PushNotificationInfoController::class, 'store'])->name('push-notification-info.store');
 
 
     Route::get('/term-condition', [TermConditionController::class, 'index'])->name('term-condition.index');
