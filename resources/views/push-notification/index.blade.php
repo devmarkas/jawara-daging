@@ -219,7 +219,7 @@
                         @foreach ($data_push_notification_info as $push_notification_info)
                         <tr>
                         <th>{{$loop->iteration}}</th>
-                        <td data-toggle="modal" class="td-pointer" data-target="#data-banner{{ $push_notification_info->id }}" >{{$push_notification_info->title_push_notification_info}}</td>
+                        <td data-toggle="modal" class="td-pointer" data-target="#data-push-notif-info{{ $push_notification_info->id }}" >{{$push_notification_info->title_push_notification_info}}</td>
                         <td>{{$push_notification_info->created_at->format('l, d F Y H:i')}}</td>
                         <td>
                             <button class="btn btn-icon icon-left btn-danger-action left notif" push_notif_info_title="{{$push_notification_info->title_push_notification_info}}" push_notif_info_id="{{$push_notification_info->id}}"><i class="fas fa-trash"></i>Delete</button>
@@ -265,6 +265,52 @@
             <p>
               {{ $push_notification->deskripsi_push_notification }}
             </p>
+          </div>
+      </div>
+  </div>
+</div>
+@endforeach
+
+@foreach ($data_push_notification_info as $push_notification_info)
+<div class="modal fade" id="data-push-notif-info{{ $push_notification_info->id }}" tabindex="-1" role="dialog"
+  aria-labelledby="data-push-notif-info-title" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="data-push-notif-info-title">DATA PUSH NOTIFICATION INFO</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+                <h5 class="judul-banner">
+                    TITLE NOTIFICATION
+                </h5>
+                <p>
+                    {{ $push_notification_info->title_push_notification_info }}
+                </p>
+                <h5 class="judul-banner">
+                    DESKRIPSI NOTIFICATION
+                </h5>
+                <p>
+                    {{ $push_notification_info->deskripsi_push_notification_info }}
+                </p>
+                <h5 class="judul-banner">
+                    URL PRODUK
+                </h5>
+                <p>
+                    {{ $push_notification_info->key_product_push_notification_info }}
+                </p>
+                <h5 class="judul-banner">
+                    ID PRODUK
+                </h5>
+                <p>
+                    {{ $push_notification_info->key_product_push_notification_info }}
+                </p>
+                <h5 class="judul-banner">
+                    Gambar Push Notification Info
+                </h5>
+                <img src="{{ $push_notification_info->image_push_notification_info }}" class="img-fluid rounded"/>
           </div>
       </div>
   </div>
