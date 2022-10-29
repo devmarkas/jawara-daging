@@ -18,8 +18,8 @@ class CreatePushNotificatonInfoTable extends Migration
             $table->string('title_push_notification_info');
             $table->string('deskripsi_push_notification_info');
             $table->string('image_push_notification_info');
-            $table->string('key_product_push_notification_info');
-            $table->string('value_product_push_notification_info');
+            $table->string('key_type');
+            $table->string('value_type');
             $table->string('type_notification')->default('info');
             $table->timestamps();
         });

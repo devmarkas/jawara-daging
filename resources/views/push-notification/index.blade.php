@@ -90,13 +90,13 @@
                         </div>
 
                         <div class="form-group" id="url-push-notification">
-                            <label>Url Produk</label>
-                            <input type="text" name="key_product_push_notification_info" class="form-control" placeholder="Masukan Url Produk" required>
+                            <label>Key Type</label>
+                            <input type="text" name="key_type" class="form-control" placeholder="Masukan Key Type" required>
                          </div>
 
                          <div class="form-group" id="deskripsi-push-notification">
-                            <label>Id Produk</label>
-                            <input type="text" name="value_product_push_notification_info" class="form-control" placeholder="Masukan Id Produk" required>
+                            <label>Value Type</label>
+                            <input type="text" name="value_type" class="form-control" placeholder="Masukan Value Type" required>
                          </div>
 
                          <div class="form-group" id="push-notification-info-image">
@@ -104,7 +104,7 @@
                             <div class="input-group mb-3" id="notification-info-image">
                                 <div class="custom-file">
                                     <input type="file" name="image_push_notification_info" class="custom-file-input" id="img-notification-info" />
-                                    <label class="custom-file-label" for="img-banner">Ubah Gambar Pop Up Banner</label>
+                                    <label class="custom-file-label" for="img-banner">Ubah Gambar Push Notification Info</label>
                                 </div>
                             </div>
                         </div>

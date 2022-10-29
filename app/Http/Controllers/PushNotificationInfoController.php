@@ -23,8 +23,8 @@ class PushNotificationInfoController extends Controller
                 'title_push_notification_info'          => 'required|string',
                 'deskripsi_push_notification_info'      => 'required|string',
                 'image_push_notification_info'          => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                'key_product_push_notification_info'    => 'required|string',
-                'value_product_push_notification_info'  => 'required|string',
+                'key_type'    => 'required|string',
+                'value_type'  => 'required|string',
             ]
         );
 

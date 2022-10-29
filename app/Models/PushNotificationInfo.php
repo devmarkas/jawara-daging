@@ -15,8 +15,8 @@ class PushNotificationInfo extends Model
         'title_push_notification_info',
         'deskripsi_push_notification_info',
         'image_push_notification_info',
-        'key_product_push_notification_info',
-        'value_product_push_notification_info',
+        'key_type',
+        'value_type',
         'type_notification'
     ];
 
