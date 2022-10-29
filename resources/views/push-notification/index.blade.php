@@ -296,16 +296,16 @@
                     {{ $push_notification_info->deskripsi_push_notification_info }}
                 </p>
                 <h5 class="judul-banner">
-                    URL PRODUK
+                    Key Type
                 </h5>
                 <p>
-                    {{ $push_notification_info->key_product_push_notification_info }}
+                    {{ $push_notification_info->key_type }}
                 </p>
                 <h5 class="judul-banner">
-                    ID PRODUK
+                    Value Type
                 </h5>
                 <p>
-                    {{ $push_notification_info->key_product_push_notification_info }}
+                    {{ $push_notification_info->value_type }}
                 </p>
                 <h5 class="judul-banner">
                     Gambar Push Notification Info
