@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Http\Controllers\Controller;
 
 class BannerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +23,7 @@ class BannerController extends Controller
     {
 
         $data_banner = Banner::all();
-        return view('banner.index', ['data_banner' => $data_banner]);        
+        return view('banner.index', ['data_banner' => $data_banner]);
     }
 
     /**
@@ -54,7 +60,7 @@ class BannerController extends Controller
         Banner::create($validator);
         return redirect()->route('banner.index')
                      ->with('success','Banner ' . $request->title . ' Created Successfully.');
-        
+
     }
 
     /**
@@ -105,12 +111,12 @@ class BannerController extends Controller
                 }
             }
         $banner->update($validator);
-    
+
         return redirect()->route('banner.index')->with('success','Banner ' . $request->title . ' Update Successfully.');
-                        
+
     }
 
-  
+
     public function destroy($id)
     {
         $banner = Banner::find($id);
@@ -118,7 +124,7 @@ class BannerController extends Controller
             File::delete($banner->image_banner);
         }
         $banner->delete();
-     
+
         return redirect()->route('banner.index')
                         ->with('success','Banner ' . $banner->title . ' Delete Successfully.');
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\PushNotificationInfoController;
 use App\Http\Controllers\TermConditionController;
 use App\Http\Controllers\BannerFooterController;
 use App\Models\PopUpBanner;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,7 +25,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('login');
+
+Route::post('/', [AuthController::class, 'login'])->name('post.login');
+
+
+
 
 Route::group(['middleware' => ['auth']], function() {
 
@@ -36,6 +42,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     //Push Notification Info
     Route::post('push-notification-info', [PushNotificationInfoController::class, 'store'])->name('push-notification-info.store');
+    Route::get('push-notification-info/delete/{id}', [PushNotificationInfoController::class, 'destroy'])->name('push-notification-info.delete');
+
 
 
     Route::get('/term-condition', [TermConditionController::class, 'index'])->name('term-condition.index');
@@ -60,19 +68,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/faq/{id}', [FaqController::class, 'update'])->name('faq.update');
     Route::get('/faq/delete/{id}', [FaqController::class, 'destroy'])->name('faq.delete');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 });

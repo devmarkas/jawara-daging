@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PushNotificationInfo;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
 
 
 
 class PushNotificationInfoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $data_push_notification_info = PushNotificationInfo::all();
@@ -47,8 +53,6 @@ class PushNotificationInfoController extends Controller
             'Content-Type: application/json',
         ];
 
-
-
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -63,8 +67,6 @@ class PushNotificationInfoController extends Controller
 
         // Execute post
         $result = curl_exec($ch);
-
-
 
         if ($result === FALSE) {
             die('Curl failed: ' . curl_error($ch));
@@ -83,11 +85,17 @@ class PushNotificationInfoController extends Controller
             $validator['image_push_notification_info'] = $nameFile;
         }
 
-
         PushNotificationInfo::create($validator);
         return redirect()->route('push-notification.index')->with('success','Push Notification Info Publish Successfully.');
+    }
 
+    public function destroy($id)
+    {
+        $data_push_notification_info = PushNotificationInfo::find($id);
+        $data_push_notification_info->delete();
 
+        return redirect()->route('push-notification.index')
+                        ->with('success','Push Notification Info Delete Successfully.');
     }
 
 }

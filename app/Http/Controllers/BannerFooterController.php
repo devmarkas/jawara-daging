@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\BannerFooter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Http\Controllers\Controller;
 
 class BannerFooterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $data_banner_footer = BannerFooter::all();

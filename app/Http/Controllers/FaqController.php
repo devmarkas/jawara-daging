@@ -5,18 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Faq;
 use Intervention\Image\Facades\Image as ImageFaq;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class FaqController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $data_faq = Faq::all();     
-        return view('faq.index', ['data_faq' => $data_faq]);      
+        $data_faq = Faq::all();
+        return view('faq.index', ['data_faq' => $data_faq]);
     }
 
     public function store(Request $request)
     {
- 
+
         $this->validate($request, [
             'title_faq' => 'required',
             'rich_text_faq' => 'required'
@@ -52,12 +58,12 @@ class FaqController extends Controller
         ]);
 
         return redirect()->route('faq.index')->with('success','Faq Create Successfully.');
-        
+
     }
 
     public function edit($id)
     {
-        $data_faq = Faq::find($id);     
+        $data_faq = Faq::find($id);
         return view('faq.edit', ['data_faq' => $data_faq]);
     }
 
@@ -98,9 +104,9 @@ class FaqController extends Controller
             'title_faq'     =>  $request->title_faq,
             'rich_text_faq' =>  $dom->saveHTML(),
         ]);
-        
+
         return redirect()->route('faq.edit',$id)->with('success','FAQ Update Successfully.');
-                        
+
     }
 
 
@@ -109,7 +115,7 @@ class FaqController extends Controller
     {
         $banner = Faq::find($id);
         $banner->delete();
-     
+
         return redirect()->route('faq.index')
                         ->with('success','FAQ Delete Successfully.');
     }

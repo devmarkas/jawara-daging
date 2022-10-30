@@ -6,20 +6,26 @@ use App\Models\TermCondition;
 // use Path\To\DOMDocument;
 use Intervention\Image\Facades\Image as Image;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TermConditionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        
+
         $data_term_condition = TermCondition::all();
-        return view('term-condition.index', ['data_term_condition' => $data_term_condition]);    
-        
+        return view('term-condition.index', ['data_term_condition' => $data_term_condition]);
+
     }
 
     public function store(Request $request)
     {
- 
+
         $this->validate($request, [
             'rich_text' => 'required'
         ]);
@@ -51,7 +57,7 @@ class TermConditionController extends Controller
         $data_term_condition=TermCondition::create([
             'rich_text' =>  $dom->saveHTML(),
         ]);
-        
+
         dd($data_term_condition->toArray());
 
     }
@@ -91,9 +97,9 @@ class TermConditionController extends Controller
         $data_term_condition->update([
             'rich_text' =>  $dom->saveHTML(),
         ]);
-        
+
         return redirect()->route('term-condition.index')->with('success','Term & Condition Publish Successfully.');
-                        
+
     }
 }
 

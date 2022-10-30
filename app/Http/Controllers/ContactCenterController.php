@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactCenter;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ContactCenterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $data_contact_center = ContactCenter::all();
-        return view('contact-center.index', ['data_contact_center' => $data_contact_center]);      
+        return view('contact-center.index', ['data_contact_center' => $data_contact_center]);
     }
 
     public function store(Request $request)
@@ -24,11 +30,11 @@ class ContactCenterController extends Controller
             ]
         );
 
-     
+
         ContactCenter::create($validator);
         return redirect()->route('contact-center.index')
                      ->with('success','Contact Center Publish Successfully.');
-        
+
     }
 
     public function update(Request $request, $id)
@@ -43,9 +49,9 @@ class ContactCenterController extends Controller
 
         $banner = ContactCenter::find($id);
         $banner->update($validator);
-    
+
         return redirect()->route('contact-center.index')->with('success','Contact Center Publish Successfully.');
-                        
+
     }
 
 }

@@ -34,14 +34,7 @@
             <div class="login-brand">
               <img src="{{ asset('template') }}/assets/img/logo.svg" alt="logo" class="shadow-dark rounded-circle-login">
             </div>
-            @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-            @endif
-
-
-            <form action="{{ route('login') }}" method="POST" id="login">
+            <form action="{{ route('post.login') }}" method="POST" id="login">
               @csrf
               <div class="form-group">
                 <div class="input-group">
@@ -51,7 +44,7 @@
                     </div>
                 </div>
               </div>
-              
+
 
               <div class="form-group">
                 <div class="input-group" id="show_hide_password">
@@ -115,40 +108,28 @@
 
 {{-- Js error email toaster  --}}
 
-<script>
-  @error('email')
-    iziToast.error({
-        title: 'Login dengan akun yang benar !',
-        message: "{{ $message }}",
-        position: 'topRight',
-        
-    });   
-  @enderror
-</script>
 
-<script>
-  @error('username')
-    iziToast.error({
-        title: 'Login dengan akun yang benar !',
-        message: "{{ $message }}",
-        position: 'topRight',
-        
-    });   
-  @enderror
-</script>
+@if (Session::has('error'))
+    <script>
+        iziToast.error({
+            title: 'Error',
+            message: '{{ Session::get('error') }}',
+            position: 'topRight',
+        });
+    </script>
+@endif
 
-{{-- Js error password toaster --}}
 
-<script>
-  @error('password')
-    iziToast.error({
-          title: 'Login dengan akun yang benar !',
-          message: "{{ $message }}",
-          position: 'topRight',
-          
-      });    
-  @enderror
-</script>
+@if (Session::has('success'))
+    <script>
+        iziToast.success({
+            title: 'Success',
+            message: '{{ Session::get('success') }}',
+            position: 'topRight',
+        });
+    </script>
+@endif
+
 
 </body>
 </html>

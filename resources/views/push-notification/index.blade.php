@@ -94,17 +94,27 @@
                             <input type="text" name="key_type" class="form-control" placeholder="Masukan Key Type" required>
                          </div>
 
-                         <div class="form-group" id="deskripsi-push-notification">
+                         {{-- <div class="form-group" id="deskripsi-push-notification">
                             <label>Value Type</label>
                             <input type="text" name="value_type" class="form-control" placeholder="Masukan Value Type" required>
-                         </div>
+                         </div> --}}
+
+                        <div class="form-group" id="deskripsi-push-notification">
+                            <label>Value Type</label>
+                            <select name="value_type" class="form-control" id="value_type" required>
+                              <option>Pilih Value Type</option>
+                              <option value="Web Launcher">Web Launcher</option>
+                              <option value="Product">Product</option>
+                              <option value="Category">Category</option>
+                            </select>
+                        </div>
 
                          <div class="form-group" id="push-notification-info-image">
                             <label for="label-push-notification-info">Gambar Push Notification Info</label>
                             <div class="input-group mb-3" id="notification-info-image">
                                 <div class="custom-file">
                                     <input type="file" name="image_push_notification_info" class="custom-file-input" id="img-notification-info" />
-                                    <label class="custom-file-label" for="img-banner">Ubah Gambar Push Notification Info</label>
+                                    <label class="custom-file-label" for="img-banner">Masukan Gambar Push Notification Info</label>
                                 </div>
                             </div>
                         </div>
@@ -212,6 +222,7 @@
                         <th scope="col">NO</th>
                         <th scope="col">TITLE</th>
                         <th scope="col">DIBUAT PADA TANGGAL</th>
+                        <th scope="col">Value Type</th>
                         <th scope="col">ACTION</th>
                         </tr>
                     </thead>
@@ -221,6 +232,7 @@
                         <th>{{$loop->iteration}}</th>
                         <td data-toggle="modal" class="td-pointer" data-target="#data-push-notif-info{{ $push_notification_info->id }}" >{{$push_notification_info->title_push_notification_info}}</td>
                         <td>{{$push_notification_info->created_at->format('l, d F Y H:i')}}</td>
+                        <td>{{$push_notification_info->value_type}}</td>
                         <td>
                             <button class="btn btn-icon icon-left btn-danger-action left notif" push_notif_info_title="{{$push_notification_info->title_push_notification_info}}" push_notif_info_id="{{$push_notification_info->id}}"><i class="fas fa-trash"></i>Delete</button>
                         </td>
@@ -409,4 +421,30 @@
         });
       });
     </script>
+
+<script>
+    $('.notif').click(function(){
+
+      var push_notif_info_title = $(this).attr('push_notif_info_title');
+      var push_notif_info_id = $(this).attr('push_notif_info_id');
+
+      swal({
+        title: 'Yakin Menghapus?',
+        text: 'Jika Iya Notification Info '+push_notif_info_title+' Tidak Bisa Dikembalikan!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          window.location = "/push-notification-info/delete/"+push_notif_info_id+"";
+          swal('Notification Info '+push_notif_info_title+' Terhapus', {
+            icon: 'success',
+          });
+        } else {
+          swal('Notification Info '+push_notif_info_title+' Tidak Jadi Dihapus');
+        }
+      });
+    });
+  </script>
 @endpush

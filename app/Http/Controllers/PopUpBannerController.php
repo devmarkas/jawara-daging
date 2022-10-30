@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\PopUpBanner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Http\Controllers\Controller;
 
 
 class PopUpBannerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
 

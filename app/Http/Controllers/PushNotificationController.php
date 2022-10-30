@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\PushNotification;
 use App\Models\PushNotificationInfo;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PushNotificationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
 
