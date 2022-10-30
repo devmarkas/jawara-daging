@@ -89,25 +89,25 @@
                             <input type="text" name="deskripsi_push_notification_info" class="form-control" placeholder="Masukan Deskripsi Push Notification" required>
                         </div>
 
-                        <div class="form-group" id="url-push-notification">
+                        {{-- <div class="form-group" id="url-push-notification">
                             <label>Key Type</label>
                             <input type="text" name="key_type" class="form-control" placeholder="Masukan Key Type" required>
-                         </div>
-
-                         {{-- <div class="form-group" id="deskripsi-push-notification">
-                            <label>Value Type</label>
-                            <input type="text" name="value_type" class="form-control" placeholder="Masukan Value Type" required>
                          </div> --}}
 
-                        <div class="form-group" id="deskripsi-push-notification">
-                            <label>Value Type</label>
-                            <select name="value_type" class="form-control" id="value_type" required>
-                              <option>Pilih Value Type</option>
+                         <div class="form-group" id="deskripsi-push-notification">
+                            <label>Key Type</label>
+                            <select name="key_type" class="form-control" id="key_type" required>
+                              <option>Pilih Key Type</option>
                               <option value="Web Launcher">Web Launcher</option>
                               <option value="Product">Product</option>
                               <option value="Category">Category</option>
                             </select>
                         </div>
+
+                         <div class="form-group" id="deskripsi-push-notification">
+                            <label>Value Type</label>
+                            <input type="text" name="value_type" class="form-control" placeholder="Masukan Value Type" required>
+                         </div>
 
                          <div class="form-group" id="push-notification-info-image">
                             <label for="label-push-notification-info">Gambar Push Notification Info</label>
@@ -222,6 +222,7 @@
                         <th scope="col">NO</th>
                         <th scope="col">TITLE</th>
                         <th scope="col">DIBUAT PADA TANGGAL</th>
+                        <th scope="col">Key Type</th>
                         <th scope="col">Value Type</th>
                         <th scope="col">ACTION</th>
                         </tr>
@@ -232,6 +233,7 @@
                         <th>{{$loop->iteration}}</th>
                         <td data-toggle="modal" class="td-pointer" data-target="#data-push-notif-info{{ $push_notification_info->id }}" >{{$push_notification_info->title_push_notification_info}}</td>
                         <td>{{$push_notification_info->created_at->format('l, d F Y H:i')}}</td>
+                        <td>{{$push_notification_info->key_type}}</td>
                         <td>{{$push_notification_info->value_type}}</td>
                         <td>
                             <button class="btn btn-icon icon-left btn-danger-action left notif" push_notif_info_title="{{$push_notification_info->title_push_notification_info}}" push_notif_info_id="{{$push_notification_info->id}}"><i class="fas fa-trash"></i>Delete</button>
