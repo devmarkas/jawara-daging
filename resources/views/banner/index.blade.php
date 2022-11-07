@@ -8,7 +8,7 @@
   <div class="row">
     <div class="header col-lg-6 col-md-5 col-sm-5 col-12 mb-4" id="header">
       <p class="subtitle" id="subtitle">
-        Welcome to Web Dashboard 
+        Welcome to Web Dashboard
         <span>
           {{ auth()->user()->name }}
         </span>
@@ -51,15 +51,31 @@
           <form action="{{ route('banner.store') }}" method="POST" enctype="multipart/form-data">
 
             @csrf
-                        
+
             <div class="form-group" id="title-banner">
               <label>Title Banner</label>
               <input type="text" name="title" class="form-control" placeholder="Masukan Judul Banner" required autofocus tabindex="1">
             </div>
+
+            <div class="form-group" id="deskripsi-push-notification">
+                <label>Key Type</label>
+                <select name="key_type_banner" class="form-control" id="key_type_banner" required>
+                  <option>Pilih Key Type</option>
+                  <option value="Web Launcher">Web Launcher</option>
+                  <option value="Product">Product</option>
+                  <option value="Category">Category</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="deskripsi-push-notification">
+                <label>Value Type</label>
+                <input type="text" name="value_type_banner" class="form-control" placeholder="Masukan Value Type" required>
+            </div>
+
             <label class="label">Gambar Banner</label>
             <div class="input-group mb-3" id="gambar-banner">
                 <div class="custom-file">
-                    <input type="file" name="image_banner" class="custom-file-input" id="img-banner" required/> 
+                    <input type="file" name="image_banner" class="custom-file-input" id="img-banner" required/>
                     <label class="custom-file-label" for="img-banner">Pilih Gambar Banner</label>
                 </div>
             </div>
@@ -106,6 +122,8 @@
                 <tr>
                   <th scope="col">NO</th>
                   <th scope="col">TITLE</th>
+                  <th scope="col">Key Type</th>
+                  <th scope="col">Value Type</th>
                   <th scope="col">DIBUAT PADA TANGGAL</th>
                   <th scope="col">ACTION</th>
                 </tr>
@@ -115,15 +133,17 @@
                 <tr>
                   <th>{{$loop->iteration}}</th>
                   <td data-toggle="modal" class="td-pointer" data-target="#data-banner{{ $banner->id }}">{{$banner->title}}</td>
+                  <td>{{$banner->key_type_banner}}</td>
+                  <td>{{$banner->value_type_banner}}</td>
                   <td>{{$banner->created_at->format('l, d F Y H:i')}}</td>
                   <td>
                     <button class="btn btn-icon icon-left btn-warning" data-toggle="modal" data-target="#update-data-banner{{ $banner->id }}"><i class="far fa-edit"></i> Edit</button>
-                    <button type="button" banner-title="{{$banner->title}}" banner-id="{{$banner->id}}" class="btn btn-icon icon-left btn-danger-action left delete"><i class="fas fa-trash"></i>Delete</button>                    
+                    <button type="button" banner-title="{{$banner->title}}" banner-id="{{$banner->id}}" class="btn btn-icon icon-left btn-danger-action left delete"><i class="fas fa-trash"></i>Delete</button>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
-            </table>          
+            </table>
         </div>
         <div class="card-footer">
         </div>
@@ -152,6 +172,18 @@
               {{ $banner->title }}
             </p>
             <h5 class="judul-banner">
+                KEY BANNER
+            </h5>
+            <p>
+                {{$banner->key_type_banner}}
+            </p>
+            <h5 class="judul-banner">
+                VALUE BANNER
+            </h5>
+            <p>
+                {{$banner->value_type_banner}}
+            </p>
+            <h5 class="judul-banner">
               Gambar BANNER
             </h5>
             <img src="{{ $banner->image_banner }}" class="img-fluid rounded"/>
@@ -177,7 +209,7 @@
             <div class="card-body">
               <form action="{{ route('banner.update',$banner->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')           
+                @method('PUT')
                 <div class="form-group" id="update-title-banner">
                     <label>Update Title Banner</label>
                     <input type="text" name="title" class="form-control" value="{{ $banner->title }}" placeholder="Ubah Judul Banner" autofocus tabindex="1">
@@ -186,7 +218,7 @@
                   <label class="label">Update Gambar Banner</label>
                   <div class="input-group mb-3" id="update-gambar-banner">
                       <div class="custom-file">
-                          <input type="file" name="image_banner" class="custom-file-input" id="img-banner-update"/> 
+                          <input type="file" name="image_banner" class="custom-file-input" id="img-banner-update"/>
                           <label class="custom-file-label update" for="img-banner-label">Pilih Untuk Ubah Gambar Banner</label>
                       </div>
                   </div>
@@ -204,7 +236,7 @@
   </div>
 </div>
 @endforeach
-    
+
 @endsection
 
 {{-- Untuk Masukan JS --}}
@@ -224,17 +256,17 @@
   function readURLAdd(input) {
 		    if (input.files && input.files[0]) {
 		        var reader = new FileReader();
-		        
+
 		        reader.onload = function (e) {
 		            $('#preview-img-banner').attr('src', e.target.result);
 		        }
-		        
+
 		        reader.readAsDataURL(input.files[0]);
 		    }
 		}
 		$("#img-banner").change(function(){
 		    readURLAdd(this);
-		}); 	
+		});
 </script>
 
 <script>
@@ -248,17 +280,17 @@
   function readURLUpdate(input) {
 		    if (input.files && input.files[0]) {
 		        var reader = new FileReader();
-		        
+
 		        reader.onload = function (e) {
 		            $('#preview-img-banner-update').attr('src', e.target.result);
 		        }
-		        
+
 		        reader.readAsDataURL(input.files[0]);
 		    }
 	}
 		$("#img-banner-update").change(function(){
 		    readURLUpdate(this);
-		}); 	
+		});
 </script>
 
     @if (Session::has('error'))
@@ -323,5 +355,5 @@
     });
   });
 </script>
-    
+
 @endpush

@@ -47,6 +47,8 @@ class BannerController extends Controller
         $validator = $request->validate(
             [
                 'title'         => 'required|string',
+                'value_type_banner' => 'required|string',
+                'key_type_banner' => 'required|string',
                 'image_banner'  => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]
         );

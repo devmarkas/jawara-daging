@@ -7,7 +7,7 @@
 <section class="section" id="content">
 
     {{-- Tambah Term & Condition --}}
-  
+
     <div id="body-content">
       <div class="card card-danger">
         <div class="card-header">
@@ -27,11 +27,26 @@
                     <input type="text" name="link_image_pop_up_banner" value="{{$pop_up_banner->link_image_pop_up_banner}}" placeholder="Masukan Link Pop Up Banner" class="form-control" id="link-pop-up-banner" required>
                 </div>
 
+                <div class="form-group" id="deskripsi-push-notification">
+                    <label>Key Type</label>
+                    <select name="key_type_pop_up_banner" class="form-control" id="key_type" required>
+                      <option>Pilih Key Type</option>
+                      <option value="Web Launcher" {{$pop_up_banner->key_type_pop_up_banner == "Web Launcher"  ? 'selected' : ''}}>Web Launcher</option>
+                      <option value="Product" {{$pop_up_banner->key_type_pop_up_banner == "Product"  ? 'selected' : ''}}>Product</option>
+                      <option value="Category" {{$pop_up_banner->key_type_pop_up_banner == "Category"  ? 'selected' : ''}}>Category</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="deskripsi-push-notification">
+                    <label>Value Type</label>
+                    <input type="text" name="value_type_pop_up_banner" value="{{$pop_up_banner->value_type_pop_up_banner}}" class="form-control" placeholder="Masukan Value Type" required>
+                </div>
+
                 <div class="form-group" id="pop-up-image-banner">
                     <label for="label-pop-up-banner">Gambar Pop Up Banner</label>
                     <div class="input-group mb-3" id="gambar-banner">
                         <div class="custom-file">
-                            <input type="file" name="image_pop_up_banner" class="custom-file-input" id="img-banner" /> 
+                            <input type="file" name="image_pop_up_banner" class="custom-file-input" id="img-banner" />
                             <label class="custom-file-label" for="img-banner">Ubah Gambar Pop Up Banner</label>
                         </div>
                     </div>
@@ -40,8 +55,8 @@
                 <div class="form-group">
                     <img id='preview-img-banner' src="{{$pop_up_banner->image_pop_up_banner}}" class="img-fluid rounded"/>
                 </div>
-              
-              
+
+
               <button type="submit" class="btn btn-icon icon-left btn-danger-action float-right mt-2 mb-4">
                 <i class="fas fa-save pr-2"></i>Simpan Perubahan</button>
             </form>
@@ -72,17 +87,17 @@
     function readURLAdd(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
-                    
+
                     reader.onload = function (e) {
                         $('#preview-img-banner').attr('src', e.target.result);
                     }
-                    
+
                     reader.readAsDataURL(input.files[0]);
                 }
             }
             $("#img-banner").change(function(){
                 readURLAdd(this);
-            }); 	
+            });
     </script>
 
     @if (Session::has('error'))
@@ -121,5 +136,5 @@
             });
         </script>
     @endif
-    
+
 @endpush

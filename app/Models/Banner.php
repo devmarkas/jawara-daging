@@ -10,9 +10,9 @@ class Banner extends Model
     use HasFactory;
 
     protected $table = 'banner';
-  
+
     protected $fillable = [
-        'title', 'image_banner'
+        'title', 'image_banner', 'key_type_banner', 'value_type_banner',
     ];
 
     /**
@@ -23,7 +23,7 @@ class Banner extends Model
     protected $appends = ['image_banner_url'];
 
     /**
-     * Get the 
+     * Get the
      *
      * @param  string  $value
      * @return string

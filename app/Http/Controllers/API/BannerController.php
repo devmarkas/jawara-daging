@@ -17,6 +17,6 @@ class BannerController extends Controller
                 'message' => 'Data Banner',
                 'data' => $data_banner,
             ], 200);
-        
+
     }
 }
