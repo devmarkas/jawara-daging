@@ -47,8 +47,8 @@ class BannerController extends Controller
         $validator = $request->validate(
             [
                 'title'         => 'required|string',
-                'value_type_banner' => 'required|string',
-                'key_type_banner' => 'required|string',
+                'value_type' => 'required|string',
+                'key_type' => 'required|string',
                 'image_banner'  => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]
         );
@@ -99,6 +99,8 @@ class BannerController extends Controller
 
         $validator = $request->validate([
             'title'         => 'nullable|string',
+            'value_type' => 'required|string',
+            'key_type' => 'required|string',
             'image_banner'  => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $banner = Banner::find($id);

@@ -11,7 +11,7 @@ class PopUpBanner extends Model
 
     protected $table = 'pop_up_banner';
     protected $fillable = [
-        'link_image_pop_up_banner', 'image_pop_up_banner', 'key_type_pop_up_banner', 'value_type_pop_up_banner'
+        'link_image_pop_up_banner', 'image_pop_up_banner', 'key_type', 'value_type'
     ];
 
     /**

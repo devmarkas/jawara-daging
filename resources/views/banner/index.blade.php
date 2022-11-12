@@ -59,17 +59,17 @@
 
             <div class="form-group" id="deskripsi-push-notification">
                 <label>Key Type</label>
-                <select name="key_type_banner" class="form-control" id="key_type_banner" required>
+                <select name="key_type" class="form-control" id="key_type_banner" required>
                   <option>Pilih Key Type</option>
-                  <option value="Web Launcher">Web Launcher</option>
-                  <option value="Product">Product</option>
-                  <option value="Category">Category</option>
+                  <option value="web_launcher">Web Launcher</option>
+                  <option value="product">Product</option>
+                  <option value="category">Category</option>
                 </select>
             </div>
 
             <div class="form-group" id="deskripsi-push-notification">
                 <label>Value Type</label>
-                <input type="text" name="value_type_banner" class="form-control" placeholder="Masukan Value Type" required>
+                <input type="text" name="value_type" class="form-control" placeholder="Masukan Value Type" required>
             </div>
 
             <label class="label">Gambar Banner</label>
@@ -133,8 +133,8 @@
                 <tr>
                   <th>{{$loop->iteration}}</th>
                   <td data-toggle="modal" class="td-pointer" data-target="#data-banner{{ $banner->id }}">{{$banner->title}}</td>
-                  <td>{{$banner->key_type_banner}}</td>
-                  <td>{{$banner->value_type_banner}}</td>
+                  <td>{{$banner->key_type}}</td>
+                  <td>{{$banner->value_type}}</td>
                   <td>{{$banner->created_at->format('l, d F Y H:i')}}</td>
                   <td>
                     <button class="btn btn-icon icon-left btn-warning" data-toggle="modal" data-target="#update-data-banner{{ $banner->id }}"><i class="far fa-edit"></i> Edit</button>
@@ -175,13 +175,13 @@
                 KEY BANNER
             </h5>
             <p>
-                {{$banner->key_type_banner}}
+                {{$banner->key_type}}
             </p>
             <h5 class="judul-banner">
                 VALUE BANNER
             </h5>
             <p>
-                {{$banner->value_type_banner}}
+                {{$banner->value_type}}
             </p>
             <h5 class="judul-banner">
               Gambar BANNER
@@ -213,6 +213,20 @@
                 <div class="form-group" id="update-title-banner">
                     <label>Update Title Banner</label>
                     <input type="text" name="title" class="form-control" value="{{ $banner->title }}" placeholder="Ubah Judul Banner" autofocus tabindex="1">
+                </div>
+                <div class="form-group" id="deskripsi-push-notification">
+                    <label>Key Type</label>
+                    <select name="key_type" class="form-control" id="key_type" required>
+                      <option>Pilih Key Type</option>
+                      <option value="web_launcher" {{$banner->key_type == "web_launcher"  ? 'selected' : ''}}>Web Launcher</option>
+                      <option value="product" {{$banner->key_type == "product"  ? 'selected' : ''}}>Product</option>
+                      <option value="category" {{$banner->key_type == "category"  ? 'selected' : ''}}>Category</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="deskripsi-push-notification">
+                    <label>Value Type</label>
+                    <input type="text" name="value_type" value="{{$banner->value_type}}" class="form-control" placeholder="Masukan Value Type" required>
                 </div>
                 <div class="form-group">
                   <label class="label">Update Gambar Banner</label>

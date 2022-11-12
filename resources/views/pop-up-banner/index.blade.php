@@ -29,17 +29,17 @@
 
                 <div class="form-group" id="deskripsi-push-notification">
                     <label>Key Type</label>
-                    <select name="key_type_pop_up_banner" class="form-control" id="key_type" required>
+                    <select name="key_type" class="form-control" id="key_type" required>
                       <option>Pilih Key Type</option>
-                      <option value="Web Launcher" {{$pop_up_banner->key_type_pop_up_banner == "Web Launcher"  ? 'selected' : ''}}>Web Launcher</option>
-                      <option value="Product" {{$pop_up_banner->key_type_pop_up_banner == "Product"  ? 'selected' : ''}}>Product</option>
-                      <option value="Category" {{$pop_up_banner->key_type_pop_up_banner == "Category"  ? 'selected' : ''}}>Category</option>
+                      <option value="web_launcher" {{$pop_up_banner->key_type == "web_launcher"  ? 'selected' : ''}}>Web Launcher</option>
+                      <option value="product" {{$pop_up_banner->key_type == "product"  ? 'selected' : ''}}>Product</option>
+                      <option value="category" {{$pop_up_banner->key_type == "category"  ? 'selected' : ''}}>Category</option>
                     </select>
                 </div>
 
                 <div class="form-group" id="deskripsi-push-notification">
                     <label>Value Type</label>
-                    <input type="text" name="value_type_pop_up_banner" value="{{$pop_up_banner->value_type_pop_up_banner}}" class="form-control" placeholder="Masukan Value Type" required>
+                    <input type="text" name="value_type" value="{{$pop_up_banner->value_type}}" class="form-control" placeholder="Masukan Value Type" required>
                 </div>
 
                 <div class="form-group" id="pop-up-image-banner">

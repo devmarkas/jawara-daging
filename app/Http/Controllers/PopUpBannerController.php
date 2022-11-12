@@ -27,8 +27,8 @@ class PopUpBannerController extends Controller
         $validator = $request->validate(
             [
                 'link_image_pop_up_banner'  =>  'required|string',
-                'key_type_pop_up_banner'    =>  'required|string',
-                'value_type_pop_up_banner'  =>  'required|string',
+                'key_type'    =>  'required|string',
+                'value_type'  =>  'required|string',
                 'image_pop_up_banner'       => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ]
         );
@@ -51,8 +51,8 @@ class PopUpBannerController extends Controller
 
         $validator = $request->validate([
             'link_image_pop_up_banner'  =>  'required|string',
-            'key_type_pop_up_banner'    =>  'required|string',
-            'value_type_pop_up_banner'  =>  'required|string',
+            'key_type'    =>  'required|string',
+            'value_type'  =>  'required|string',
             'image_pop_up_banner'       =>  '|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -71,8 +71,8 @@ class PopUpBannerController extends Controller
 
         $pop_up_banner->update([
             'link_image_pop_up_banner'=>$request->input('link_image_pop_up_banner'),
-            'key_type_pop_up_banner' =>$request->input('key_type_pop_up_banner'),
-            'value_type_pop_up_banner' =>$request->input('value_type_pop_up_banner')
+            'key_type' =>$request->input('key_type'),
+            'value_type' =>$request->input('value_type')
         ]);
         return redirect()->route('pop-up-banner.index')->with('success','Pop Up Banner Update Successfully.');
 

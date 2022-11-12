@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('banner', function (Blueprint $table) {
-            $table->string('key_type_banner');
-            $table->string('value_type_banner');
+            $table->string('key_type');
+            $table->string('value_type');
         });
     }
 

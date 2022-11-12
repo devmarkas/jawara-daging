@@ -12,7 +12,7 @@ class Banner extends Model
     protected $table = 'banner';
 
     protected $fillable = [
-        'title', 'image_banner', 'key_type_banner', 'value_type_banner',
+        'title', 'image_banner', 'key_type', 'value_type',
     ];
 
     /**
@@ -24,7 +24,7 @@ class Banner extends Model
 
     /**
      * Get the
-     *
+     *S
      * @param  string  $value
      * @return string
      */
