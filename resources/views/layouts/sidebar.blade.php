@@ -30,9 +30,9 @@
           <a class="nav-link" href="/push-notification">
             <span>Push Notification</span>
             @if (Request::is('push-notification*'))
-              <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif-active.svg" alt="">
+              <img class="icon" src="{{ asset('template') }}/assets/img/icon-pop-up.svg" alt="">
             @else
-              <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif.svg" alt="">
+                <img class="icon" src="{{ asset('template') }}/assets/img/icon-pop-up.svg" alt="">
             @endif
           </a>
         </li>
@@ -41,9 +41,9 @@
           <a class="nav-link" href="/term-condition">
             <span>Term & Condition</span>
             @if (Request::is('term-condition*'))
-              <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif-active.svg" alt="">
+              <img class="icon" src="{{ asset('template') }}/assets/img/icon-term-condition.svg" alt="">
             @else
-              <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif.svg" alt="">
+              <img class="icon" src="{{ asset('template') }}/assets/img/icon-term-condition.svg" alt="">
             @endif
           </a>
         </li>
@@ -52,9 +52,9 @@
           <a class="nav-link" href="/faq">
             <span>FAQ</span>
             @if (Request::is('faq*'))
-              <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif-active.svg" alt="">
+              <img class="icon" src="{{ asset('template') }}/assets/img/icon-faq.svg" alt="">
             @else
-              <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif.svg" alt="">
+              <img class="icon" src="{{ asset('template') }}/assets/img/icon-faq.svg" alt="">
             @endif
           </a>
         </li>
@@ -63,9 +63,9 @@
           <a class="nav-link" href="/contact-center">
             <span>Contact Center</span>
             @if (Request::is('contact-center*'))
-              <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif-active.svg" alt="">
+              <img class="icon" src="{{ asset('template') }}/assets/img/icon-contact.svg" alt="">
             @else
-              <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif.svg" alt="">
+              <img class="icon" src="{{ asset('template') }}/assets/img/icon-contact.svg" alt="">
             @endif
           </a>
         </li>
@@ -74,9 +74,9 @@
           <a class="nav-link" href="/pop-up-banner">
             <span>Pop Up Banner</span>
             @if (Request::is('pop-up-banner*'))
-              <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif-active.svg" alt="">
+              <img class="icon" src="{{ asset('template') }}/assets/img/icon-pop-up.svg" alt="">
             @else
-              <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif.svg" alt="">
+              <img class="icon" src="{{ asset('template') }}/assets/img/icon-pop-up.svg" alt="">
             @endif
           </a>
         </li>
@@ -85,9 +85,9 @@
             <a class="nav-link" href="{{ route('footer-banner.index') }}">
               <span>Banner Footer</span>
               @if (Request::is('footer-banner*'))
-                <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif-active.svg" alt="">
+                <img class="icon" src="{{ asset('template') }}/assets/img/icon-banner footer.svg" alt="">
               @else
-                <img class="icon" src="{{ asset('template') }}/assets/img/icon-notif.svg" alt="">
+                <img class="icon" src="{{ asset('template') }}/assets/img/icon-banner footer.svg" alt="">
               @endif
             </a>
           </li>
