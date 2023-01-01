@@ -22,7 +22,7 @@ class BannerController extends Controller
     public function index()
     {
 
-        $data_banner = Banner::all();
+        $data_banner = Banner::orderBy('id', 'DESC')->get();
         return view('banner.index', ['data_banner' => $data_banner]);
     }
 

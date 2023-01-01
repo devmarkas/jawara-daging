@@ -189,7 +189,7 @@
                                 <td data-toggle="modal" class="td-pointer" data-target="#data-banner{{ $push_notification->id }}" >{{$push_notification->title_push_notification}}</td>
                                 <td>{{$push_notification->created_at->format('l, d F Y H:i')}}</td>
                                 <td>
-                                    <button class="btn btn-icon icon-left btn-danger-action left notif" push_notif_title="{{$push_notification->title_push_notification}}" push_notif_id="{{$push_notification->id}}"><i class="fas fa-trash"></i>Delete</button>
+                                    <button class="btn btn-icon icon-left btn-danger-action left notif promo" id="promo" push_notif_title="{{$push_notification->title_push_notification}}" push_notif_id="{{$push_notification->id}}"><i class="fas fa-trash"></i>Delete</button>
                                 </td>
                                 </tr>
                                 @endforeach
@@ -399,54 +399,51 @@
     @endif
 
     <script>
-      $('.notif').click(function(){
-
+      $(document).on('click', '.promo', function (e) {
+        e.preventDefault();
         var push_notif_title = $(this).attr('push_notif_title');
         var push_notif_id = $(this).attr('push_notif_id');
-
         swal({
           title: 'Yakin Menghapus?',
-          text: 'Jika Iya Notification '+push_notif_title+' Tidak Bisa Dikembalikan!',
+          text: 'Jika Iya Notification '+ $(this).attr('push_notif_title') +' Tidak Bisa Dikembalikan!',
           icon: 'warning',
           buttons: true,
           dangerMode: true,
         })
         .then((willDelete) => {
           if (willDelete) {
-            window.location = "/push-notification/delete/"+push_notif_id+"";
-            swal('Notification '+push_notif_title+' Terhapus', {
+            window.location = "/push-notification/delete/" + $(this).attr('push_notif_id') + "";
+            swal('Notification '+ $(this).attr('push_notif_title') +' Terhapus', {
               icon: 'success',
             });
           } else {
-            swal('Notification '+push_notif_title+' Tidak Jadi Dihapus');
+            swal('Notification '+ $(this).attr('push_notif_title') +' Tidak Jadi Dihapus');
           }
         });
       });
     </script>
 
-<script>
-    $('.notif').click(function(){
-
-      var push_notif_info_title = $(this).attr('push_notif_info_title');
-      var push_notif_info_id = $(this).attr('push_notif_info_id');
-
-      swal({
-        title: 'Yakin Menghapus?',
-        text: 'Jika Iya Notification Info '+push_notif_info_title+' Tidak Bisa Dikembalikan!',
-        icon: 'warning',
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((willDelete) => {
-        if (willDelete) {
-          window.location = "/push-notification-info/delete/"+push_notif_info_id+"";
-          swal('Notification Info '+push_notif_info_title+' Terhapus', {
-            icon: 'success',
-          });
-        } else {
-          swal('Notification Info '+push_notif_info_title+' Tidak Jadi Dihapus');
-        }
-      });
-    });
-  </script>
+    <script>
+        $('.notif').click(function(){
+            var push_notif_info_title = $(this).attr('push_notif_info_title');
+            var push_notif_info_id = $(this).attr('push_notif_info_id');
+            swal({
+                title: 'Yakin Menghapus?',
+                text: 'Jika Iya Notification Info '+push_notif_info_title+' Tidak Bisa Dikembalikan!',
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location = "/push-notification-info/delete/"+push_notif_info_id+"";
+                    swal('Notification Info '+push_notif_info_title+' Terhapus', {
+                        icon: 'success',
+                    });
+                } else {
+                    swal('Notification Info '+push_notif_info_title+' Tidak Jadi Dihapus');
+                }
+            });
+        });
+    </script>
 @endpush

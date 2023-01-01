@@ -11,12 +11,12 @@ class PopUpBannerController extends Controller
     public function index()
     {
 
-        $data_pup_up_banner = PopUpBanner::all();
+        $data_pup_up_banner = PopUpBanner::orderBy('id', 'DESC')->get();
         return response()
             ->json([
                 'message' => 'Data Banner',
                 'data'    => $data_pup_up_banner,
             ], 200);
-        
+
     }
 }

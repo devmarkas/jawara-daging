@@ -11,12 +11,12 @@ class TermConditionController extends Controller
     public function index()
     {
 
-        $data_term_condition = TermCondition::all();
+        $data_term_condition = TermCondition::orderBy('id', 'DESC')->get();
         return response()
             ->json([
                 'message' => 'Data Term & Condition',
                 'data' => $data_term_condition,
             ], 200);
-        
+
     }
 }

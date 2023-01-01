@@ -12,6 +12,6 @@ class ContactCenter extends Model
     protected $table = 'contact_center';
 
     protected $fillable = [
-        'alamat_kantor', 'no_tlp', 'alamat_email', 'alamat_website'
+        'alamat_kantor', 'no_tlp', 'alamat_email', 'alamat_website', 'chk_link_wa', 'link_wa'
     ];
 }

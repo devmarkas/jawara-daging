@@ -30,6 +30,19 @@
             <div class="form-group">
               <label for="label-no-tlp">No Tlp</label>
               <input type="number" class="form-control" name="no_tlp" value="{{$contact_center->no_tlp}}" id="no-tlp" placeholder="Masukan No. Telp" required>
+              <div class="form-check form-check-inline mt-3">
+                <input class="form-check-input" type="checkbox" @if($contact_center->chk_link_wa == "Active" ) checked @endif name="chk_link_wa" value="Active" id="wa-link" style="cursor: pointer;">
+                <label class="form-check-label" for="wa-link">Hubungkan ke WhatsApp</label>
+              </div>
+            </div>
+
+            <div class="form-group" id="con-input-link-wa" style="{{ $contact_center->chk_link_wa == "Not Active" ? 'display: none;' : '' }}">
+                <label for="input-link-wa">Link WhatsApp</label>
+                <input type="text" class="form-control" name="link_wa" value="{{$contact_center->link_wa}}" id="input-link-wa" placeholder="Ex: https://wa.me/6282244862271?text=Haloo%20Saya%20Ingin%20Pesan%20Website">
+                <div class="mt-1">
+                    <a href="{{$contact_center->link_wa}}" target="_blank">Preview</a>
+                </div>
+
             </div>
 
             <div class="form-group">
@@ -51,7 +64,7 @@
   </div>
 </section>
 
-    
+
 @endsection
 
 {{-- Untuk Masukan JS --}}
@@ -95,25 +108,36 @@
         </script>
     @endif
 
-<script>
-  $("#summernote").summernote({
-      dialogsInBody: true,
-      minHeight: 250,
-      toolbar: [
-        ['style', ['style']],
-        ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
-        ['fontname', ['fontname']],
-        ['fontsize', ['fontsize']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['height', ['height']],
-        ['table', ['table']],
-        ['insert', ['link', 'picture', 'hr', 'video']],
-        ['view', ['codeview']],
-      ]
-      
+    <script>
+    $("#summernote").summernote({
+        dialogsInBody: true,
+        minHeight: 250,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+            ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'hr', 'video']],
+            ['view', ['codeview']],
+        ]
 
-    });
-</script>
+
+        });
+    </script>
+    <script>
+        $("#wa-link").click(function(){
+            var checkedCheck = $('input[name="chk_link_wa"]:checked').length > 0;
+            console.log(checkedCheck);
+            if (checkedCheck == true) {
+                $("#con-input-link-wa").show();
+            } else {
+                $("#con-input-link-wa").hide();
+            }
+        });
+    </script>
 
 @endpush

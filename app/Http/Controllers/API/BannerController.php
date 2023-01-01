@@ -11,7 +11,7 @@ class BannerController extends Controller
     public function index()
     {
 
-        $data_banner = Banner::all();
+        $data_banner = Banner::orderBy('id', 'DESC')->get();
         return response()
             ->json([
                 'message' => 'Data Banner',

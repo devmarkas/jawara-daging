@@ -16,7 +16,7 @@ class BannerFooterController extends Controller
 
     public function index()
     {
-        $data_banner_footer = BannerFooter::all();
+        $data_banner_footer = BannerFooter::orderBy('id', 'DESC')->get();
         return view('banner-footer.index', ['data_banner_footer' => $data_banner_footer]);
     }
 

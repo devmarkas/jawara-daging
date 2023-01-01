@@ -18,7 +18,7 @@ class PushNotificationInfoController extends Controller
 
     public function index()
     {
-        $data_push_notification_info = PushNotificationInfo::all();
+        $data_push_notification_info = PushNotificationInfo::orderBy('id', 'DESC')->get();
         return view('push-notification.index', ['data_push_notification_info' => $data_push_notification_info]);
     }
 

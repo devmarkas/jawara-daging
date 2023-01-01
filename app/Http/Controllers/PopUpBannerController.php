@@ -18,7 +18,7 @@ class PopUpBannerController extends Controller
     public function index()
     {
 
-        $data_pop_up_banner = PopUpBanner::all();
+        $data_pop_up_banner = PopUpBanner::orderBy('id', 'DESC')->get();
         return view('pop-up-banner.index', ['data_pop_up_banner' => $data_pop_up_banner]);
     }
 

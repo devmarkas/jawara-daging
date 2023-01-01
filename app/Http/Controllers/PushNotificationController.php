@@ -17,8 +17,9 @@ class PushNotificationController extends Controller
     public function index()
     {
 
-        $data_push_notification = PushNotification::all();
-        $data_push_notification_info = PushNotificationInfo::all();
+        $data_push_notification = PushNotification::orderBy('id', 'DESC')->get();
+        // dd($data_push_notification);
+        $data_push_notification_info = PushNotificationInfo::orderBy('id', 'DESC')->get();
 
         return view('push-notification.index',
         [
@@ -91,6 +92,6 @@ class PushNotificationController extends Controller
         $data_push_notification->delete();
 
         return redirect()->route('push-notification.index')
-                        ->with('success','Push Notification Delete Successfully.');
+                        ->with('success','Push Notification Promo Delete Successfully.');
     }
 }

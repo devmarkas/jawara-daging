@@ -16,7 +16,7 @@ class FaqController extends Controller
 
     public function index()
     {
-        $data_faq = Faq::all();
+        $data_faq = Faq::orderBy('id', 'DESC')->get();
         return view('faq.index', ['data_faq' => $data_faq]);
     }
 

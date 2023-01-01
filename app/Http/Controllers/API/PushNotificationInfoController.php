@@ -12,7 +12,7 @@ class PushNotificationInfoController extends Controller
     public function index()
     {
 
-        $data_notif_info = PushNotificationInfo::all();
+        $data_notif_info = PushNotificationInfo::orderBy('id', 'DESC')->get();
         return response()
             ->json([
                 'message' => 'Data Notification Info',
