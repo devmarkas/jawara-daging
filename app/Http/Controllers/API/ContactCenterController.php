@@ -14,7 +14,7 @@ class ContactCenterController extends Controller
         $data_contact_center = ContactCenter::orderBy('id', 'DESC')->get();
         return response()
             ->json([
-                'message' => 'Data Banner',
+                'message' => 'Data Contact Center',
                 'data'    => $data_contact_center,
             ], 200);
 

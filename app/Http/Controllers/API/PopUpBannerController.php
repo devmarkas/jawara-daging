@@ -14,7 +14,7 @@ class PopUpBannerController extends Controller
         $data_pup_up_banner = PopUpBanner::orderBy('id', 'DESC')->get();
         return response()
             ->json([
-                'message' => 'Data Banner',
+                'message' => 'Data Pop Up Banner',
                 'data'    => $data_pup_up_banner,
             ], 200);
 
