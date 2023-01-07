@@ -10,7 +10,7 @@ class FaqController extends Controller
 {
     public function index()
     {
-        $data_faq = Faq::all();
+        $data_faq = Faq::orderBy('id', 'DESC')->get();
         return response()
             ->json([
                 'message' => 'Data FAQ',
